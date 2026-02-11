@@ -65,7 +65,7 @@
 
     .hero{padding:22px 0 10px;}
     .hero-banner{
-      border-radius:var(--radius);
+      border-radius:16px;
       overflow:hidden;
       border:1px solid var(--line);
       box-shadow:var(--shadow);
@@ -81,7 +81,7 @@
     }
     .hero-banner img{
       width:100%;
-      height:260px;
+      height:auto;
       object-fit:cover;
       display:block;
       filter:saturate(1.05) contrast(1.02);
@@ -447,10 +447,12 @@
             <span><a id="mailContact" href="#">arkigumi@gmail.com</a></span>
           </div>
           <div class="mini">
-            <strong>Cím</strong>
-            <span id="addrContact"></span>
-            <span class="hint"><a id="mapContact" href="#" target="_blank" rel="noopener">Megnyitás térképen</a></span>
-          </div>
+  <strong>Cím</strong>
+  <a id="addrSideLink" href="#kapcsolat" style="color:var(--text); font-weight:700; display:inline-block; margin-top:4px;">
+    <span id="addrSide"></span>
+  </a>
+  <span class="hint">Kattints a térképhez</span>
+</div>
 
           <div class="mini">
             <strong>Facebook</strong>
