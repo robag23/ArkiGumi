@@ -401,4 +401,164 @@
               <td>Ellenőrzés + javítás lehetőség szerint</td>
               <td>egyedi</td>
      
-::contentReference[oaicite:0]{index=0}
+            <tr>
+              <td>Felni javítás (görgőzés)</td>
+              <td>Ellenőrzés + javítás lehetőség szerint</td>
+              <td>egyedi</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="hint" style="margin-top:10px;">
+          Tipp: ha rezeg a kormány 90–110 km/h között, gyakran centrír vagy felni okozza.
+        </div>
+      </div>
+    </section>
+
+    <!-- IDŐPONT -->
+    <section id="idopont" class="section">
+      <h2>Időpontkérés</h2>
+      <p>Írd meg a gumiméretet (pl. 205/55 R16) és a problémát. A „Küldés” e-mailt nyit meg.</p>
+
+      <div class="contact-grid">
+        <div class="card" style="padding:16px;">
+          <form id="bookingForm">
+            <label>
+              Név
+              <input name="name" required placeholder="Pl. Gábor" />
+            </label>
+            <label>
+              Telefonszám
+              <input name="phone" required placeholder="+36 ..." />
+            </label>
+            <label>
+              Szolgáltatás
+              <select name="service" required>
+                <option value="" disabled selected>Válassz</option>
+                <option>Gumicsere</option>
+                <option>Átszerelés + centrír</option>
+                <option>Defektjavítás</option>
+                <option>Szelep / perem</option>
+                <option>Új gumik</option>
+                <option>Felni javítás (görgőzés)</option>
+                <option>Autómosó (info)</option>
+                <option>Egyéb</option>
+              </select>
+            </label>
+            <label>
+              Autó / gumiméret
+              <input name="car" placeholder="Pl. Opel Astra, 195/65 R15" />
+            </label>
+            <label>
+              Üzenet
+              <textarea name="message" placeholder="Röviden: mi a gond, mikor lenne jó?"></textarea>
+            </label>
+
+            <div class="row">
+              <button class="btn primary" type="submit">Küldés</button>
+              <a class="btn" id="callBtn2" href="#">Inkább hívok</a>
+            </div>
+            <div class="hint">
+              Gyors kérdésre a telefon a legjobb:
+              <span id="telTextInline"></span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- TÉRKÉP -->
+    <section id="terkep" class="section">
+      <h2>Térkép</h2>
+
+      <div class="card" style="padding:14px;">
+        <div style="border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.10);">
+          <iframe
+            id="mapIframe"
+            title="Google térkép"
+            width="100%"
+            height="320"
+            style="border:0; display:block;"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="row">
+        <span>© <span id="year"></span> <span id="footName"></span> • Minden jog fenntartva</span>
+        <span class="right">Cím: <span id="footAddr"></span></span>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const mapQ = encodeURIComponent(SHOP.address);
+    const mapUrl = `https://www.google.com/maps/search/?api=1&query=${mapQ}`;
+    const mapEmbed = `https://www.google.com/maps?q=${mapQ}&output=embed`;
+
+    document.getElementById('mapIframe').src = mapEmbed;
+
+    // NAV
+    document.getElementById('brandName').textContent = SHOP.name;
+    document.getElementById('brandSub').textContent = `${SHOP.city} • gumiszerviz + autómosó`;
+    document.getElementById('heroName').textContent = SHOP.name;
+
+    // PHONE
+    const telHref = `tel:${SHOP.phoneTel}`;
+    document.getElementById('callBtn').href = telHref;
+    document.getElementById('telBtn').href = telHref;
+    document.getElementById('telBtn').textContent = `📞 ${SHOP.phoneDisplay}`;
+    document.getElementById('telSide').href = telHref;
+    document.getElementById('telSide').textContent = `📞 ${SHOP.phoneDisplay}`;
+    document.getElementById('callBtn2').href = telHref;
+    document.getElementById('telTextInline').textContent = SHOP.phoneDisplay;
+
+    // EMAIL
+    const mailHref = `mailto:${SHOP.email}`;
+    document.getElementById('mailSide').href = mailHref;
+    document.getElementById('mailSide').textContent = `✉️ ${SHOP.email}`;
+
+    // FACEBOOK
+    document.getElementById('fbSide').href = SHOP.facebook;
+
+    // ADDRESS
+    document.getElementById('addrSide').textContent = SHOP.address;
+    document.getElementById('footName').textContent = SHOP.name;
+    document.getElementById('footAddr').textContent = SHOP.address;
+
+    // HOURS
+    const hoursText = SHOP.hours.map(h => `${h.day}: ${h.time}`).join(" • ");
+    document.getElementById('hoursSide').textContent = hoursText;
+
+    // AUTÓMOSÓ
+    const washText = `${SHOP.carWash.title} • ${SHOP.carWash.hours} • ${SHOP.carWash.note}`;
+    document.getElementById('washSide').textContent = washText;
+
+    // CÍM -> TÉRKÉP
+    document.getElementById('addrMini').addEventListener('click', function(){
+      document.getElementById('terkep').scrollIntoView({behavior:'smooth'});
+    });
+
+    // BOOKING
+    document.getElementById('bookingForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const data = new FormData(e.target);
+
+      const subject = encodeURIComponent(`Időpontkérés – ${data.get('service')}`);
+      const body = encodeURIComponent(
+        `Név: ${data.get('name')}\n` +
+        `Telefon: ${data.get('phone')}\n` +
+        `Autó / gumiméret: ${data.get('car')}\n\n` +
+        `Üzenet:\n${data.get('message')}`
+      );
+
+      window.location.href = `mailto:${SHOP.email}?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>
