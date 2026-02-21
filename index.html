@@ -66,7 +66,6 @@
 
     /* HERO + BANNER */
     .hero{padding:22px 0 10px;}
-
     .hero-banner{
       margin-bottom:14px;
       border-radius:16px;
@@ -133,7 +132,7 @@
     .mini.clickable{ cursor:pointer; }
     .mini.clickable:hover{ background:rgba(255,255,255,.05); }
 
-    /* Nyitvatartás: soronként (FIX) */
+    /* Nyitvatartás */
     .hours-list{display:grid; gap:6px; margin-top:4px;}
     .hour-line{
       display:flex;
@@ -165,6 +164,7 @@
 
     .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:stretch;}
     @media (max-width: 900px){ .contact-grid{grid-template-columns:1fr;} }
+
     form{display:grid; gap:10px}
     input, textarea, select{
       width:100%;
@@ -184,6 +184,74 @@
 
     /* REJTÉS: Árak menü + szekció */
     .hidden{display:none !important;}
+
+    /* SOCIAL BUTTONS */
+    .social-row{display:flex; gap:10px; flex-wrap:wrap;}
+    .social-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      font-weight:800;
+      border:1px solid var(--line);
+      cursor:pointer;
+      user-select:none;
+      min-width:190px;
+    }
+    .social-btn.fb{background:#1877f2; color:#fff;}
+    .social-btn.ig{background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4); color:#fff;}
+    .social-btn.gg{background:#111827; color:#fff;}
+    .social-btn:hover{transform:translateY(-1px); opacity:.95;}
+    .social-btn.disabled{
+      opacity:.55;
+      filter:saturate(.6);
+      cursor:not-allowed;
+      transform:none !important;
+    }
+
+    /* REVIEWS */
+    .review-wrap{padding:18px;}
+    .review-top{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+    .review-top .meta{color:var(--muted); font-size:13px}
+    .review-slide{display:none; text-align:left;}
+    .review-slide.active{display:block; animation:fade .25s ease-in-out;}
+    .stars{font-size:18px; letter-spacing:1px; margin:0 0 6px;}
+    .review-text{color:var(--text); line-height:1.55; margin:0 0 10px;}
+    .review-who{color:var(--muted); font-size:13px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+    .source-pill{
+      font-size:12px;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--muted);
+    }
+    .review-controls{display:flex; justify-content:space-between; align-items:center; margin-top:12px; gap:10px;}
+    .review-controls button{
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--line);
+      color:var(--text);
+      font-size:16px;
+      padding:8px 12px;
+      border-radius:12px;
+      cursor:pointer;
+    }
+    .review-controls button:hover{background:rgba(255,255,255,.10);}
+    .dots{display:flex; gap:8px; justify-content:center; flex:1;}
+    .dot2{
+      width:10px;height:10px;border-radius:50%;
+      border:1px solid rgba(255,255,255,.22);
+      background:transparent;
+      cursor:pointer;
+    }
+    .dot2.active{background:var(--brand); border-color:rgba(255,210,74,.45);}
+    @keyframes fade{from{opacity:0} to{opacity:1}}
   </style>
 </head>
 
@@ -198,6 +266,8 @@
       phoneTel: "+36306154576",
       email: "arkigumi@gmail.com",
       facebook: "https://www.facebook.com/ArkiGumi",
+      instagram: "", // még nincs -> gomb disabled, nem visz sehova
+      googleBusiness: "https://maps.app.goo.gl/9SwahwdundSnwd8t7",
       hours: [
         { day: "H–P", time: "7:30–16:00" },
         { day: "Szombat", time: "7:30–12:00" },
@@ -223,10 +293,7 @@
 
       <nav class="menu" aria-label="Főmenü">
         <a href="#szolgaltatasok">Szolgáltatások</a>
-
-        <!-- ÁRAK MENÜ REJTETT -->
         <a class="hidden" href="#arak" id="menuArak">Árak</a>
-
         <a href="#idopont">Időpont</a>
         <a href="#terkep">Kapcsolat</a>
         <a class="cta" id="callBtn" href="#">Hívás</a>
@@ -236,7 +303,7 @@
 
   <main id="top" class="wrap">
 
-    <!-- BANNER (header.png) -->
+    <!-- BANNER -->
     <div class="hero-banner" aria-label="Árki Gumi banner">
       <img src="header.png" alt="Árki Gumi banner" />
     </div>
@@ -312,57 +379,18 @@
       <p>Helyben, gyorsan, érthetően. Ha kell, telefonon előre egyeztetünk.</p>
 
       <div class="grid3">
-        <div class="card svc">
-          <div class="icon">🛞</div>
-          <h3>Gumicsere / Átszerelés</h3>
-          <p>Nyári–téli csere, szerelés, meghúzás nyomatékkulccsal.</p>
-        </div>
-
-        <div class="card svc">
-          <div class="icon">🛒</div>
-          <h3>Új gumik értékesítése</h3>
-          <p>Segítünk méret alapján, korrekt ajánlattal – igény szerint rendelésre is.</p>
-        </div>
-
-        <div class="card svc">
-          <div class="icon">⚙️</div>
-          <h3>Centrírozás</h3>
-          <p>Rezgés megszüntetése, kényelmesebb futás, kíméltebb kopás.</p>
-        </div>
-
-        <div class="card svc">
-          <div class="icon">🩹</div>
-          <h3>Defektjavítás</h3>
-          <p>Szúrás, lassú eresztés, szelephiba – csak biztonságos javítással.</p>
-        </div>
-
-        <div class="card svc">
-          <div class="icon">🛞</div>
-          <h3>Felni javítás (görgőzés)</h3>
-          <p>Ha üt a felni vagy ráz az autó: ellenőrzés, javaslat, javítás gördülékenyen.</p>
-        </div>
-
-        <div class="card svc">
-          <div class="icon">🔧</div>
-          <h3>Szelep / perem</h3>
-          <p>Szelepcsere, peremtisztítás, szivárgások felmérése.</p>
-        </div>
-
-        <div class="card svc">
-          <div class="icon">🧰</div>
-          <h3>Alap felniellenőrzés</h3>
-          <p>Ütés / deformáció gyanú esetén ellenőrzés és javaslat.</p>
-        </div>
-
-        <div class="card svc">
-          <div class="icon">🧽</div>
-          <h3>Érmés kézi autómosó (0–24)</h3>
-          <p>Önkiszolgáló, érmés – mosás bármikor, amikor neked jó.</p>
-        </div>
+        <div class="card svc"><div class="icon">🛞</div><h3>Gumicsere / Átszerelés</h3><p>Nyári–téli csere, szerelés, meghúzás nyomatékkulccsal.</p></div>
+        <div class="card svc"><div class="icon">🛒</div><h3>Új gumik értékesítése</h3><p>Segítünk méret alapján, korrekt ajánlattal – igény szerint rendelésre is.</p></div>
+        <div class="card svc"><div class="icon">⚙️</div><h3>Centrírozás</h3><p>Rezgés megszüntetése, kényelmesebb futás, kíméltebb kopás.</p></div>
+        <div class="card svc"><div class="icon">🩹</div><h3>Defektjavítás</h3><p>Szúrás, lassú eresztés, szelephiba – csak biztonságos javítással.</p></div>
+        <div class="card svc"><div class="icon">🛞</div><h3>Felni javítás (görgőzés)</h3><p>Ha üt a felni vagy ráz az autó: ellenőrzés, javaslat, javítás gördülékenyen.</p></div>
+        <div class="card svc"><div class="icon">🔧</div><h3>Szelep / perem</h3><p>Szelepcsere, peremtisztítás, szivárgások felmérése.</p></div>
+        <div class="card svc"><div class="icon">🧰</div><h3>Alap felniellenőrzés</h3><p>Ütés / deformáció gyanú esetén ellenőrzés és javaslat.</p></div>
+        <div class="card svc"><div class="icon">🧽</div><h3>Érmés kézi autómosó (0–24)</h3><p>Önkiszolgáló, érmés – mosás bármikor, amikor neked jó.</p></div>
       </div>
     </section>
 
-    <!-- ÁRAK SZEKCIÓ REJTETT -->
+    <!-- ÁRAK (REJTETT) -->
     <section id="arak" class="section hidden">
       <h2>Árak (irányár)</h2>
       <p>Később frissítjük.</p>
@@ -376,16 +404,13 @@
       <div class="contact-grid">
         <div class="card" style="padding:16px;">
           <form id="bookingForm">
-            <label>
-              Név
+            <label>Név
               <input name="name" required placeholder="Pl. Gábor" />
             </label>
-            <label>
-              Telefonszám
+            <label>Telefonszám
               <input name="phone" required placeholder="+36 ..." />
             </label>
-            <label>
-              Szolgáltatás
+            <label>Szolgáltatás
               <select name="service" required>
                 <option value="" disabled selected>Válassz</option>
                 <option>Gumicsere</option>
@@ -397,12 +422,10 @@
                 <option>Egyéb</option>
               </select>
             </label>
-            <label>
-              Autó / gumiméret
+            <label>Autó / gumiméret
               <input name="car" placeholder="Pl. Opel Astra, 195/65 R15" />
             </label>
-            <label>
-              Üzenet
+            <label>Üzenet
               <textarea name="message" placeholder="Röviden: mi a gond, mikor lenne jó?"></textarea>
             </label>
 
@@ -436,6 +459,69 @@
       </div>
     </section>
 
+    <!-- SOCIAL + REVIEWS -->
+    <section class="section" id="velemenyek">
+      <h2>Közösségi oldalak & Vélemények</h2>
+      <p>Facebookon és hamarosan Instagramon is jövünk friss képekkel. A vélemények segítenek másoknak is dönteni.</p>
+
+      <div class="contact-grid">
+        <!-- SOCIAL -->
+        <div class="card" style="padding:18px;">
+          <h3 style="margin:0 0 10px;">Kövess minket</h3>
+          <div class="social-row">
+            <a class="social-btn fb" id="fbBtn" href="#" target="_blank" rel="noopener">📘 Facebook</a>
+            <a class="social-btn ig disabled" id="igBtn" href="#" aria-disabled="true">📸 Instagram (hamarosan)</a>
+          </div>
+
+          <div style="height:12px"></div>
+
+          <h3 style="margin:0 0 10px;">Google értékelések</h3>
+          <div class="social-row">
+            <a class="social-btn gg" id="googleViewBtn" href="#" target="_blank" rel="noopener">⭐ Összes vélemény</a>
+            <a class="social-btn gg" id="googleWriteBtn" href="#" target="_blank" rel="noopener">✍️ Írj véleményt</a>
+          </div>
+
+          <div style="height:10px"></div>
+          <div class="hint">Instagram gomb addig nem kattintható, amíg nincs kész az oldal.</div>
+        </div>
+
+        <!-- REVIEWS SLIDER -->
+        <div class="card review-wrap">
+          <div class="review-top">
+            <div>
+              <strong>Vélemények</strong>
+              <div class="meta">Lapozható – kézzel frissíthető (API nélkül)</div>
+            </div>
+            <span class="badge">5★ hangulat</span>
+          </div>
+
+          <div class="review-slide active">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">„Gyors és korrekt. Nem beszél mellé, megcsinálja rendesen.”</p>
+            <div class="review-who"><span><strong>– Péter</strong></span> <span class="source-pill">Google</span></div>
+          </div>
+
+          <div class="review-slide">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">„Defekttel estem be, 20 perc alatt kész volt. Ajánlom!”</p>
+            <div class="review-who"><span><strong>– Zoltán</strong></span> <span class="source-pill">Facebook</span></div>
+          </div>
+
+          <div class="review-slide">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">„Végre egy gumis, aki őszintén megmondja, mi kell és mi nem.”</p>
+            <div class="review-who"><span><strong>– Andrea</strong></span> <span class="source-pill">Google</span></div>
+          </div>
+
+          <div class="review-controls">
+            <button type="button" onclick="prevReview()">‹</button>
+            <div class="dots" id="reviewDots"></div>
+            <button type="button" onclick="nextReview()">›</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <footer class="footer">
       <div class="row">
         <span>© <span id="year"></span> <span id="footName"></span> • Minden jog fenntartva</span>
@@ -445,12 +531,13 @@
   </main>
 
   <script>
+    // YEAR
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // MAP
     const mapQ = encodeURIComponent(SHOP.address);
     const mapUrl = `https://www.google.com/maps/search/?api=1&query=${mapQ}`;
     const mapEmbed = `https://www.google.com/maps?q=${mapQ}&output=embed`;
-
     document.getElementById('mapIframe').src = mapEmbed;
 
     // NAV/HERO
@@ -458,7 +545,7 @@
     document.getElementById('brandSub').textContent = `${SHOP.city} • gumiszerviz + autómosó`;
     document.getElementById('heroName').textContent = SHOP.name;
 
-    // ÚTVONAL gomb -> Google Maps
+    // ÚTVONAL gomb
     document.getElementById('mapBtn').href = mapUrl;
 
     // PHONE
@@ -476,7 +563,7 @@
     document.getElementById('mailSide').href = mailHref;
     document.getElementById('mailSide').textContent = `✉️ ${SHOP.email}`;
 
-    // FACEBOOK
+    // FACEBOOK SIDE LINK
     document.getElementById('fbSide').href = SHOP.facebook;
 
     // ADDRESS
@@ -484,7 +571,7 @@
     document.getElementById('footName').textContent = SHOP.name;
     document.getElementById('footAddr').textContent = SHOP.address;
 
-    // HOURS (soronként)
+    // HOURS
     const hoursWrap = document.getElementById('hoursSide');
     hoursWrap.innerHTML = SHOP.hours.map(h => (
       `<div class="hour-line">
@@ -497,7 +584,7 @@
     const washText = `${SHOP.carWash.title} • ${SHOP.carWash.hours} • ${SHOP.carWash.note}`;
     document.getElementById('washSide').textContent = washText;
 
-    // CÍM -> TÉRKÉP (katt + billentyű)
+    // CÍM -> TÉRKÉP
     function goToMap(){
       document.getElementById('terkep').scrollIntoView({behavior:'smooth'});
     }
@@ -532,6 +619,61 @@
 
       window.location.href = `mailto:${SHOP.email}?subject=${subject}&body=${body}`;
     });
+
+    // SOCIAL LINKS
+    document.getElementById('fbBtn').href = SHOP.facebook;
+
+    const igBtn = document.getElementById('igBtn');
+    if (SHOP.instagram && SHOP.instagram.trim().length > 0) {
+      igBtn.classList.remove('disabled');
+      igBtn.removeAttribute('aria-disabled');
+      igBtn.href = SHOP.instagram;
+      igBtn.target = "_blank";
+      igBtn.rel = "noopener";
+      igBtn.textContent = "📸 Instagram";
+    } else {
+      igBtn.addEventListener('click', (e) => e.preventDefault());
+    }
+
+    // GOOGLE BUSINESS
+    document.getElementById('googleViewBtn').href = SHOP.googleBusiness;
+    document.getElementById('googleWriteBtn').href = SHOP.googleBusiness;
+
+    // REVIEWS SLIDER
+    let reviewIndex = 0;
+    const reviewSlides = Array.from(document.querySelectorAll('.review-slide'));
+    const dotsWrap = document.getElementById('reviewDots');
+
+    function renderDots(){
+      if(!dotsWrap) return;
+      dotsWrap.innerHTML = reviewSlides.map((_, i) =>
+        `<span class="dot2 ${i===reviewIndex ? 'active' : ''}" onclick="goReview(${i})"></span>`
+      ).join('');
+    }
+
+    function showReview(i){
+      reviewSlides.forEach(s => s.classList.remove('active'));
+      reviewSlides[i].classList.add('active');
+      renderDots();
+    }
+
+    function nextReview(){
+      reviewIndex = (reviewIndex + 1) % reviewSlides.length;
+      showReview(reviewIndex);
+    }
+
+    function prevReview(){
+      reviewIndex = (reviewIndex - 1 + reviewSlides.length) % reviewSlides.length;
+      showReview(reviewIndex);
+    }
+
+    function goReview(i){
+      reviewIndex = i;
+      showReview(reviewIndex);
+    }
+
+    renderDots();
+    setInterval(nextReview, 6000);
   </script>
 </body>
 </html>
