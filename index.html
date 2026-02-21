@@ -133,13 +133,14 @@
     .mini.clickable{ cursor:pointer; }
     .mini.clickable:hover{ background:rgba(255,255,255,.05); }
 
-    /* Nyitvatartás: soronként */
+    /* Nyitvatartás: soronként (FIX) */
     .hours-list{display:grid; gap:6px; margin-top:4px;}
     .hour-line{
-      display:flex; justify-content:space-between; gap:10px;
-      font-size:13px; color
-::contentReference[oaicite:0]{index=0}
-:var(--muted);
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      font-size:13px;
+      color:var(--muted);
       border-bottom:1px dashed rgba(255,255,255,.10);
       padding-bottom:6px;
     }
@@ -361,7 +362,7 @@
       </div>
     </section>
 
-    <!-- ÁRAK SZEKCIÓ REJTETT (később csak vedd le a class="hidden"-t) -->
+    <!-- ÁRAK SZEKCIÓ REJTETT -->
     <section id="arak" class="section hidden">
       <h2>Árak (irányár)</h2>
       <p>Később frissítjük.</p>
