@@ -52,9 +52,11 @@
       box-shadow:0 10px 25px rgba(0,0,0,.35);
       background:linear-gradient(135deg,var(--brand),var(--brand2));
     }
+
     .menu{display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:flex-end;}
     .menu a{padding:8px 10px; border-radius:12px; color:var(--muted);}
     .menu a:hover{background:rgba(255,255,255,.06); color:var(--text);}
+
     .cta{
       background:linear-gradient(135deg,var(--brand),#ffb703);
       color:#0b0f14; font-weight:800;
@@ -63,6 +65,56 @@
       white-space:nowrap;
     }
     .cta:hover{transform:translateY(-1px)}
+
+    /* Mobile hamburger */
+    .hamburger{
+      display:none;
+      width:44px; height:44px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+    }
+    .hamburger:hover{background:rgba(255,255,255,.07)}
+    .mobile-menu{
+      display:none;
+      border-top:1px solid var(--line);
+      background:rgba(11,15,20,.92);
+      backdrop-filter:saturate(140%) blur(10px);
+    }
+    .mobile-menu-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:12px 18px 16px;
+      display:grid;
+      gap:8px;
+    }
+    .mobile-menu a{
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      font-weight:700;
+    }
+    .mobile-menu a:hover{background:rgba(255,255,255,.07)}
+    .mobile-menu .cta-link{
+      background:linear-gradient(135deg,var(--brand),#ffb703);
+      color:#0b0f14;
+      border:none;
+      box-shadow:0 14px 35px rgba(255,210,74,.14);
+    }
+    .mobile-menu.open{display:block;}
+
+    @media (max-width: 760px){
+      .menu{display:none;}
+      .hamburger{display:flex;}
+      .brand{min-width:unset;}
+    }
 
     /* HERO + BANNER */
     .hero{padding:22px 0 10px;}
@@ -128,7 +180,6 @@
     }
     .mini strong{font-size:14px}
     .mini span{color:var(--muted); font-size:13px}
-
     .mini.clickable{ cursor:pointer; }
     .mini.clickable:hover{ background:rgba(255,255,255,.05); }
 
@@ -185,7 +236,7 @@
     /* REJTÉS: Árak menü + szekció */
     .hidden{display:none !important;}
 
-    /* SOCIAL BUTTONS */
+    /* SOCIAL / REVIEWS block (booking mellett) */
     .social-row{display:flex; gap:10px; flex-wrap:wrap;}
     .social-btn{
       display:inline-flex;
@@ -198,12 +249,14 @@
       border:1px solid var(--line);
       cursor:pointer;
       user-select:none;
-      min-width:190px;
+      min-width:160px;
+      background:rgba(255,255,255,.04);
     }
-    .social-btn.fb{background:#1877f2; color:#fff;}
-    .social-btn.ig{background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4); color:#fff;}
-    .social-btn.gg{background:#111827; color:#fff;}
-    .social-btn:hover{transform:translateY(-1px); opacity:.95;}
+    .social-btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.07);}
+    .social-btn.fb{background:#1877f2; color:#fff; border-color:rgba(255,255,255,.10);}
+    .social-btn.ig{background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4); color:#fff; border-color:rgba(255,255,255,.10);}
+    .social-btn.tt{background:#0b0f14; color:#fff; border-color:rgba(255,255,255,.18);}
+    .social-btn.gg{background:#111827; color:#fff; border-color:rgba(255,255,255,.18);}
     .social-btn.disabled{
       opacity:.55;
       filter:saturate(.6);
@@ -211,12 +264,10 @@
       transform:none !important;
     }
 
-    /* REVIEWS */
-    .review-wrap{padding:18px;}
+    .review-wrap{padding:18px; display:grid; gap:12px;}
     .review-top{
       display:flex; align-items:center; justify-content:space-between; gap:10px;
       flex-wrap:wrap;
-      margin-bottom:10px;
     }
     .review-top .meta{color:var(--muted); font-size:13px}
     .review-slide{display:none; text-align:left;}
@@ -232,7 +283,7 @@
       background:rgba(255,255,255,.03);
       color:var(--muted);
     }
-    .review-controls{display:flex; justify-content:space-between; align-items:center; margin-top:12px; gap:10px;}
+    .review-controls{display:flex; justify-content:space-between; align-items:center; gap:10px;}
     .review-controls button{
       background:rgba(255,255,255,.05);
       border:1px solid var(--line);
@@ -251,6 +302,7 @@
       cursor:pointer;
     }
     .dot2.active{background:var(--brand); border-color:rgba(255,210,74,.45);}
+
     @keyframes fade{from{opacity:0} to{opacity:1}}
   </style>
 </head>
@@ -266,8 +318,13 @@
       phoneTel: "+36306154576",
       email: "arkigumi@gmail.com",
       facebook: "https://www.facebook.com/ArkiGumi",
-      instagram: "", // még nincs -> gomb disabled, nem visz sehova
+
+      // Később csak írd be a linkeket, és a gombok automatikusan kattinthatók lesznek:
+      instagram: "", // pl: "https://www.instagram.com/arkigumi"
+      tiktok: "",    // pl: "https://www.tiktok.com/@arkigumi"
+
       googleBusiness: "https://maps.app.goo.gl/9SwahwdundSnwd8t7",
+
       hours: [
         { day: "H–P", time: "7:30–16:00" },
         { day: "Szombat", time: "7:30–12:00" },
@@ -291,6 +348,7 @@
         </div>
       </a>
 
+      <!-- Desktop menu -->
       <nav class="menu" aria-label="Főmenü">
         <a href="#szolgaltatasok">Szolgáltatások</a>
         <a class="hidden" href="#arak" id="menuArak">Árak</a>
@@ -298,6 +356,19 @@
         <a href="#terkep">Kapcsolat</a>
         <a class="cta" id="callBtn" href="#">Hívás</a>
       </nav>
+
+      <!-- Mobile hamburger -->
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menü" aria-expanded="false">☰</button>
+    </div>
+
+    <!-- Mobile dropdown -->
+    <div class="mobile-menu" id="mobileMenu" aria-label="Mobil menü">
+      <div class="mobile-menu-inner">
+        <a href="#szolgaltatasok" class="m-link">Szolgáltatások</a>
+        <a href="#idopont" class="m-link">Időpont</a>
+        <a href="#terkep" class="m-link">Kapcsolat</a>
+        <a href="#" class="m-link cta-link" id="callBtnMobile">Hívás</a>
+      </div>
     </div>
   </header>
 
@@ -396,12 +467,13 @@
       <p>Később frissítjük.</p>
     </section>
 
-    <!-- IDŐPONT -->
+    <!-- IDŐPONT + MELLETTE: SOCIAL + REVIEWS -->
     <section id="idopont" class="section">
       <h2>Időpontkérés</h2>
       <p>Írd meg a gumiméretet (pl. 205/55 R16) és a problémát. A „Küldés” e-mailt nyit meg.</p>
 
       <div class="contact-grid">
+        <!-- FORM -->
         <div class="card" style="padding:16px;">
           <form id="bookingForm">
             <label>Név
@@ -436,61 +508,36 @@
             <div class="hint">Gyors kérdésre a telefon a legjobb: <span id="telTextInline"></span></div>
           </form>
         </div>
-      </div>
-    </section>
 
-    <!-- TÉRKÉP -->
-    <section id="terkep" class="section">
-      <h2>Térkép</h2>
-
-      <div class="card" style="padding:14px;">
-        <div style="border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.10);">
-          <iframe
-            id="mapIframe"
-            title="Google térkép"
-            width="100%"
-            height="320"
-            style="border:0; display:block;"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            src="">
-          </iframe>
-        </div>
-      </div>
-    </section>
-
-    <!-- SOCIAL + REVIEWS -->
-    <section class="section" id="velemenyek">
-      <h2>Közösségi oldalak & Vélemények</h2>
-      <p>Facebookon és hamarosan Instagramon is jövünk friss képekkel. A vélemények segítenek másoknak is dönteni.</p>
-
-      <div class="contact-grid">
-        <!-- SOCIAL -->
-        <div class="card" style="padding:18px;">
-          <h3 style="margin:0 0 10px;">Kövess minket</h3>
-          <div class="social-row">
-            <a class="social-btn fb" id="fbBtn" href="#" target="_blank" rel="noopener">📘 Facebook</a>
-            <a class="social-btn ig disabled" id="igBtn" href="#" aria-disabled="true">📸 Instagram (hamarosan)</a>
-          </div>
-
-          <div style="height:12px"></div>
-
-          <h3 style="margin:0 0 10px;">Google értékelések</h3>
-          <div class="social-row">
-            <a class="social-btn gg" id="googleViewBtn" href="#" target="_blank" rel="noopener">⭐ Összes vélemény</a>
-            <a class="social-btn gg" id="googleWriteBtn" href="#" target="_blank" rel="noopener">✍️ Írj véleményt</a>
-          </div>
-
-          <div style="height:10px"></div>
-          <div class="hint">Instagram gomb addig nem kattintható, amíg nincs kész az oldal.</div>
-        </div>
-
-        <!-- REVIEWS SLIDER -->
+        <!-- SOCIAL + REVIEWS (új blokk a form mellett) -->
         <div class="card review-wrap">
+          <div>
+            <strong>Kövess minket</strong>
+            <div class="hint" style="margin-top:4px;">Most még nem visznek sehova a gombok (később linkelhető).</div>
+            <div style="height:10px"></div>
+            <div class="social-row">
+              <a class="social-btn fb" id="fbBtn" href="#" aria-disabled="true">📘 Facebook</a>
+              <a class="social-btn ig disabled" id="igBtn" href="#" aria-disabled="true">📸 Instagram</a>
+              <a class="social-btn tt disabled" id="ttBtn" href="#" aria-disabled="true">🎵 TikTok</a>
+            </div>
+
+            <div style="height:12px"></div>
+
+            <strong>Google értékelések</strong>
+            <div class="hint" style="margin-top:4px;">Az “Összes vélemény” és az “Írj véleményt” már működik.</div>
+            <div style="height:10px"></div>
+            <div class="social-row">
+              <a class="social-btn gg" id="googleViewBtn" href="#" target="_blank" rel="noopener">⭐ Összes vélemény</a>
+              <a class="social-btn gg" id="googleWriteBtn" href="#" target="_blank" rel="noopener">✍️ Írj véleményt</a>
+            </div>
+          </div>
+
+          <div style="height:6px"></div>
+
           <div class="review-top">
             <div>
               <strong>Vélemények</strong>
-              <div class="meta">Lapozható – kézzel frissíthető (API nélkül)</div>
+              <div class="meta">Lapozható (API nélkül)</div>
             </div>
             <span class="badge">5★ hangulat</span>
           </div>
@@ -518,6 +565,26 @@
             <div class="dots" id="reviewDots"></div>
             <button type="button" onclick="nextReview()">›</button>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TÉRKÉP -->
+    <section id="terkep" class="section">
+      <h2>Térkép</h2>
+
+      <div class="card" style="padding:14px;">
+        <div style="border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.10);">
+          <iframe
+            id="mapIframe"
+            title="Google térkép"
+            width="100%"
+            height="320"
+            style="border:0; display:block;"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="">
+          </iframe>
         </div>
       </div>
     </section>
@@ -558,12 +625,15 @@
     document.getElementById('callBtn2').href = telHref;
     document.getElementById('telTextInline').textContent = SHOP.phoneDisplay;
 
+    // Mobile call button
+    document.getElementById('callBtnMobile').href = telHref;
+
     // EMAIL
     const mailHref = `mailto:${SHOP.email}`;
     document.getElementById('mailSide').href = mailHref;
     document.getElementById('mailSide').textContent = `✉️ ${SHOP.email}`;
 
-    // FACEBOOK SIDE LINK
+    // FACEBOOK side link
     document.getElementById('fbSide').href = SHOP.facebook;
 
     // ADDRESS
@@ -614,28 +684,42 @@
         `Üzenet:\n${msg}\n\n` +
         `Cím: ${SHOP.address}\n` +
         `Telefon: ${SHOP.phoneDisplay}\n` +
-        `Facebook: ${SHOP.facebook}`
+        `Facebook: ${SHOP.facebook}\n` +
+        `Google: ${SHOP.googleBusiness}`
       );
 
       window.location.href = `mailto:${SHOP.email}?subject=${subject}&body=${body}`;
     });
 
-    // SOCIAL LINKS
-    document.getElementById('fbBtn').href = SHOP.facebook;
-
+    // SOCIAL buttons (most: ne vigyen sehova, később: csak töltsd ki a SHOP.instagram / SHOP.tiktok értékét)
+    const fbBtn = document.getElementById('fbBtn');
     const igBtn = document.getElementById('igBtn');
-    if (SHOP.instagram && SHOP.instagram.trim().length > 0) {
-      igBtn.classList.remove('disabled');
-      igBtn.removeAttribute('aria-disabled');
-      igBtn.href = SHOP.instagram;
-      igBtn.target = "_blank";
-      igBtn.rel = "noopener";
-      igBtn.textContent = "📸 Instagram";
-    } else {
-      igBtn.addEventListener('click', (e) => e.preventDefault());
+    const ttBtn = document.getElementById('ttBtn');
+
+    function bindSocial(btn, url, openInNewTab){
+      if(url && url.trim().length > 0){
+        btn.classList.remove('disabled');
+        btn.removeAttribute('aria-disabled');
+        btn.href = url;
+        if(openInNewTab){
+          btn.target = "_blank";
+          btn.rel = "noopener";
+        }
+      } else {
+        btn.classList.add('disabled');
+        btn.setAttribute('aria-disabled','true');
+        btn.href = "#";
+        btn.addEventListener('click', (e) => e.preventDefault());
+      }
     }
 
-    // GOOGLE BUSINESS
+    // Kérésed szerint: MOST még ne vigyen sehova (FB/IG/TikTok)
+    // Ha később szeretnéd, hogy a Facebook már kattintható legyen, csak tedd be a SHOP.facebook-et ide bindSocial-lal.
+    bindSocial(fbBtn, "", true);
+    bindSocial(igBtn, SHOP.instagram, true);
+    bindSocial(ttBtn, SHOP.tiktok, true);
+
+    // Google Business (működjön)
     document.getElementById('googleViewBtn').href = SHOP.googleBusiness;
     document.getElementById('googleWriteBtn').href = SHOP.googleBusiness;
 
@@ -674,6 +758,30 @@
 
     renderDots();
     setInterval(nextReview, 6000);
+
+    // Hamburger toggle
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    function closeMobileMenu(){
+      mobileMenu.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded','false');
+      hamburgerBtn.textContent = '☰';
+    }
+    hamburgerBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
+      hamburgerBtn.textContent = isOpen ? '✕' : '☰';
+    });
+
+    // close menu on click any mobile link
+    document.querySelectorAll('.m-link').forEach(a => {
+      a.addEventListener('click', () => closeMobileMenu());
+    });
+
+    // close on Escape
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') closeMobileMenu();
+    });
   </script>
 </body>
 </html>
