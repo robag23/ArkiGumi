@@ -43,7 +43,7 @@
       display:flex; align-items:center; justify-content:space-between; gap:12px;
       padding:12px 18px; max-width:var(--max); margin:0 auto;
     }
-    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px; min-width:220px;}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px;}
     .logo-img{
       width:44px; height:44px;
       border-radius:12px;
@@ -52,11 +52,9 @@
       box-shadow:0 10px 25px rgba(0,0,0,.35);
       background:linear-gradient(135deg,var(--brand),var(--brand2));
     }
-
     .menu{display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:flex-end;}
     .menu a{padding:8px 10px; border-radius:12px; color:var(--muted);}
     .menu a:hover{background:rgba(255,255,255,.06); color:var(--text);}
-
     .cta{
       background:linear-gradient(135deg,var(--brand),#ffb703);
       color:#0b0f14; font-weight:800;
@@ -66,7 +64,7 @@
     }
     .cta:hover{transform:translateY(-1px)}
 
-    /* Mobile hamburger */
+    /* Hamburger */
     .hamburger{
       display:none;
       width:44px; height:44px;
@@ -86,6 +84,7 @@
       background:rgba(11,15,20,.92);
       backdrop-filter:saturate(140%) blur(10px);
     }
+    .mobile-menu.open{display:block;}
     .mobile-menu-inner{
       max-width:var(--max);
       margin:0 auto;
@@ -108,12 +107,9 @@
       border:none;
       box-shadow:0 14px 35px rgba(255,210,74,.14);
     }
-    .mobile-menu.open{display:block;}
-
     @media (max-width: 760px){
       .menu{display:none;}
       .hamburger{display:flex;}
-      .brand{min-width:unset;}
     }
 
     /* HERO + BANNER */
@@ -186,11 +182,8 @@
     /* Nyitvatartás */
     .hours-list{display:grid; gap:6px; margin-top:4px;}
     .hour-line{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      font-size:13px;
-      color:var(--muted);
+      display:flex; justify-content:space-between; gap:10px;
+      font-size:13px; color:var(--muted);
       border-bottom:1px dashed rgba(255,255,255,.10);
       padding-bottom:6px;
     }
@@ -233,77 +226,28 @@
     .right{margin-left:auto}
     .badge{color:#0b0f14; background:linear-gradient(135deg,var(--brand),var(--brand2)); padding:6px 10px; border-radius:999px; font-weight:900; font-size:12px}
 
-    /* REJTÉS: Árak menü + szekció */
-    .hidden{display:none !important;}
-
-    /* SOCIAL / REVIEWS block (booking mellett) */
+    /* SOCIAL (booking mellett) */
+    .social-card{padding:16px; display:grid; gap:12px;}
     .social-row{display:flex; gap:10px; flex-wrap:wrap;}
     .social-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:12px 14px;
-      border-radius:14px;
-      font-weight:800;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px; border-radius:14px; font-weight:900;
       border:1px solid var(--line);
-      cursor:pointer;
-      user-select:none;
-      min-width:160px;
       background:rgba(255,255,255,.04);
+      cursor:pointer;
+      min-width:160px;
     }
     .social-btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.07);}
-    .social-btn.fb{background:#1877f2; color:#fff; border-color:rgba(255,255,255,.10);}
-    .social-btn.ig{background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4); color:#fff; border-color:rgba(255,255,255,.10);}
-    .social-btn.tt{background:#0b0f14; color:#fff; border-color:rgba(255,255,255,.18);}
-    .social-btn.gg{background:#111827; color:#fff; border-color:rgba(255,255,255,.18);}
+    .social-btn.fb{background:#1877f2; color:#fff; border-color:rgba(255,255,255,.12);}
+    .social-btn.ig{background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4); color:#fff; border-color:rgba(255,255,255,.12);}
+    .social-btn.tt{background:#0b0f14; color:#fff; border-color:rgba(255,255,255,.22);}
+    .social-btn.gg{background:#111827; color:#fff; border-color:rgba(255,255,255,.22);}
     .social-btn.disabled{
       opacity:.55;
       filter:saturate(.6);
       cursor:not-allowed;
       transform:none !important;
     }
-
-    .review-wrap{padding:18px; display:grid; gap:12px;}
-    .review-top{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      flex-wrap:wrap;
-    }
-    .review-top .meta{color:var(--muted); font-size:13px}
-    .review-slide{display:none; text-align:left;}
-    .review-slide.active{display:block; animation:fade .25s ease-in-out;}
-    .stars{font-size:18px; letter-spacing:1px; margin:0 0 6px;}
-    .review-text{color:var(--text); line-height:1.55; margin:0 0 10px;}
-    .review-who{color:var(--muted); font-size:13px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
-    .source-pill{
-      font-size:12px;
-      padding:4px 8px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      color:var(--muted);
-    }
-    .review-controls{display:flex; justify-content:space-between; align-items:center; gap:10px;}
-    .review-controls button{
-      background:rgba(255,255,255,.05);
-      border:1px solid var(--line);
-      color:var(--text);
-      font-size:16px;
-      padding:8px 12px;
-      border-radius:12px;
-      cursor:pointer;
-    }
-    .review-controls button:hover{background:rgba(255,255,255,.10);}
-    .dots{display:flex; gap:8px; justify-content:center; flex:1;}
-    .dot2{
-      width:10px;height:10px;border-radius:50%;
-      border:1px solid rgba(255,255,255,.22);
-      background:transparent;
-      cursor:pointer;
-    }
-    .dot2.active{background:var(--brand); border-color:rgba(255,210,74,.45);}
-
-    @keyframes fade{from{opacity:0} to{opacity:1}}
   </style>
 </head>
 
@@ -317,13 +261,18 @@
       phoneDisplay: "+36 30 615 4576",
       phoneTel: "+36306154576",
       email: "arkigumi@gmail.com",
-      facebook: "https://www.facebook.com/ArkiGumi",
 
-      // Később csak írd be a linkeket, és a gombok automatikusan kattinthatók lesznek:
-      instagram: "", // pl: "https://www.instagram.com/arkigumi"
-      tiktok: "",    // pl: "https://www.tiktok.com/@arkigumi"
+      // Később ide írod be és automatikusan kattintható lesz
+      facebook: "",   // pl: "https://www.facebook.com/ArkiGumi"
+      instagram: "",  // pl: "https://www.instagram.com/arkigumi"
+      tiktok: "",     // pl: "https://www.tiktok.com/@arkigumi"
 
+      // Google Business (tőled kapott)
       googleBusiness: "https://maps.app.goo.gl/9SwahwdundSnwd8t7",
+
+      // Pontos középre igazításhoz koordináta (a Google link alapján)
+      lat: 46.0451301,
+      lng: 17.9858147,
 
       hours: [
         { day: "H–P", time: "7:30–16:00" },
@@ -348,20 +297,16 @@
         </div>
       </a>
 
-      <!-- Desktop menu -->
       <nav class="menu" aria-label="Főmenü">
         <a href="#szolgaltatasok">Szolgáltatások</a>
-        <a class="hidden" href="#arak" id="menuArak">Árak</a>
         <a href="#idopont">Időpont</a>
         <a href="#terkep">Kapcsolat</a>
         <a class="cta" id="callBtn" href="#">Hívás</a>
       </nav>
 
-      <!-- Mobile hamburger -->
       <button class="hamburger" id="hamburgerBtn" aria-label="Menü" aria-expanded="false">☰</button>
     </div>
 
-    <!-- Mobile dropdown -->
     <div class="mobile-menu" id="mobileMenu" aria-label="Mobil menü">
       <div class="mobile-menu-inner">
         <a href="#szolgaltatasok" class="m-link">Szolgáltatások</a>
@@ -374,12 +319,10 @@
 
   <main id="top" class="wrap">
 
-    <!-- BANNER -->
     <div class="hero-banner" aria-label="Árki Gumi banner">
       <img src="header.png" alt="Árki Gumi banner" />
     </div>
 
-    <!-- HERO -->
     <section class="hero">
       <div class="hero-header-inner">
         <div class="card hero-card">
@@ -433,7 +376,6 @@
             <strong>Elérhetőség</strong>
             <span><a id="telSide" href="#">📞</a></span>
             <span><a id="mailSide" href="#">✉️</a></span>
-            <span class="hint"><a id="fbSide" href="#" target="_blank" rel="noopener">Facebook oldal</a></span>
           </div>
 
           <div class="mini">
@@ -444,7 +386,6 @@
       </div>
     </section>
 
-    <!-- SZOLGÁLTATÁSOK -->
     <section id="szolgaltatasok" class="section">
       <h2>Szolgáltatások</h2>
       <p>Helyben, gyorsan, érthetően. Ha kell, telefonon előre egyeztetünk.</p>
@@ -455,19 +396,11 @@
         <div class="card svc"><div class="icon">⚙️</div><h3>Centrírozás</h3><p>Rezgés megszüntetése, kényelmesebb futás, kíméltebb kopás.</p></div>
         <div class="card svc"><div class="icon">🩹</div><h3>Defektjavítás</h3><p>Szúrás, lassú eresztés, szelephiba – csak biztonságos javítással.</p></div>
         <div class="card svc"><div class="icon">🛞</div><h3>Felni javítás (görgőzés)</h3><p>Ha üt a felni vagy ráz az autó: ellenőrzés, javaslat, javítás gördülékenyen.</p></div>
-        <div class="card svc"><div class="icon">🔧</div><h3>Szelep / perem</h3><p>Szelepcsere, peremtisztítás, szivárgások felmérése.</p></div>
-        <div class="card svc"><div class="icon">🧰</div><h3>Alap felniellenőrzés</h3><p>Ütés / deformáció gyanú esetén ellenőrzés és javaslat.</p></div>
         <div class="card svc"><div class="icon">🧽</div><h3>Érmés kézi autómosó (0–24)</h3><p>Önkiszolgáló, érmés – mosás bármikor, amikor neked jó.</p></div>
       </div>
     </section>
 
-    <!-- ÁRAK (REJTETT) -->
-    <section id="arak" class="section hidden">
-      <h2>Árak (irányár)</h2>
-      <p>Később frissítjük.</p>
-    </section>
-
-    <!-- IDŐPONT + MELLETTE: SOCIAL + REVIEWS -->
+    <!-- IDŐPONT + SOCIAL + GOOGLE REVIEWS (VALÓDI, NINCS FAKE SZÖVEG) -->
     <section id="idopont" class="section">
       <h2>Időpontkérés</h2>
       <p>Írd meg a gumiméretet (pl. 205/55 R16) és a problémát. A „Küldés” e-mailt nyit meg.</p>
@@ -476,13 +409,16 @@
         <!-- FORM -->
         <div class="card" style="padding:16px;">
           <form id="bookingForm">
-            <label>Név
+            <label>
+              Név
               <input name="name" required placeholder="Pl. Gábor" />
             </label>
-            <label>Telefonszám
+            <label>
+              Telefonszám
               <input name="phone" required placeholder="+36 ..." />
             </label>
-            <label>Szolgáltatás
+            <label>
+              Szolgáltatás
               <select name="service" required>
                 <option value="" disabled selected>Válassz</option>
                 <option>Gumicsere</option>
@@ -494,10 +430,12 @@
                 <option>Egyéb</option>
               </select>
             </label>
-            <label>Autó / gumiméret
+            <label>
+              Autó / gumiméret
               <input name="car" placeholder="Pl. Opel Astra, 195/65 R15" />
             </label>
-            <label>Üzenet
+            <label>
+              Üzenet
               <textarea name="message" placeholder="Röviden: mi a gond, mikor lenne jó?"></textarea>
             </label>
 
@@ -509,67 +447,45 @@
           </form>
         </div>
 
-        <!-- SOCIAL + REVIEWS (új blokk a form mellett) -->
-        <div class="card review-wrap">
+        <!-- SOCIAL + GOOGLE REVIEWS gombok (igazi) -->
+        <div class="card social-card">
           <div>
-            <strong>Kövess minket</strong>
-            <div class="hint" style="margin-top:4px;">Most még nem visznek sehova a gombok (később linkelhető).</div>
+            <strong>Közösségi oldalak</strong>
+            <div class="hint" style="margin-top:4px;">
+              Most még nem visznek sehova. Később csak kitöltöd a SHOP.facebook / instagram / tiktok linkeket, és kattintható lesz.
+            </div>
             <div style="height:10px"></div>
+
             <div class="social-row">
-              <a class="social-btn fb" id="fbBtn" href="#" aria-disabled="true">📘 Facebook</a>
+              <a class="social-btn fb disabled" id="fbBtn" href="#" aria-disabled="true">📘 Facebook</a>
               <a class="social-btn ig disabled" id="igBtn" href="#" aria-disabled="true">📸 Instagram</a>
               <a class="social-btn tt disabled" id="ttBtn" href="#" aria-disabled="true">🎵 TikTok</a>
             </div>
+          </div>
 
-            <div style="height:12px"></div>
+          <div style="height:4px"></div>
 
+          <div>
             <strong>Google értékelések</strong>
-            <div class="hint" style="margin-top:4px;">Az “Összes vélemény” és az “Írj véleményt” már működik.</div>
+            <div class="hint" style="margin-top:4px;">
+              Itt csak valódi Google vélemények: a gomb a Google oldalra visz.
+            </div>
             <div style="height:10px"></div>
+
             <div class="social-row">
-              <a class="social-btn gg" id="googleViewBtn" href="#" target="_blank" rel="noopener">⭐ Összes vélemény</a>
+              <a class="social-btn gg" id="googleReviewsBtn" href="#" target="_blank" rel="noopener">⭐ Vélemények (Google)</a>
               <a class="social-btn gg" id="googleWriteBtn" href="#" target="_blank" rel="noopener">✍️ Írj véleményt</a>
             </div>
           </div>
 
-          <div style="height:6px"></div>
-
-          <div class="review-top">
-            <div>
-              <strong>Vélemények</strong>
-              <div class="meta">Lapozható (API nélkül)</div>
-            </div>
-            <span class="badge">5★ hangulat</span>
-          </div>
-
-          <div class="review-slide active">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">„Gyors és korrekt. Nem beszél mellé, megcsinálja rendesen.”</p>
-            <div class="review-who"><span><strong>– Péter</strong></span> <span class="source-pill">Google</span></div>
-          </div>
-
-          <div class="review-slide">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">„Defekttel estem be, 20 perc alatt kész volt. Ajánlom!”</p>
-            <div class="review-who"><span><strong>– Zoltán</strong></span> <span class="source-pill">Facebook</span></div>
-          </div>
-
-          <div class="review-slide">
-            <div class="stars">★★★★★</div>
-            <p class="review-text">„Végre egy gumis, aki őszintén megmondja, mi kell és mi nem.”</p>
-            <div class="review-who"><span><strong>– Andrea</strong></span> <span class="source-pill">Google</span></div>
-          </div>
-
-          <div class="review-controls">
-            <button type="button" onclick="prevReview()">‹</button>
-            <div class="dots" id="reviewDots"></div>
-            <button type="button" onclick="nextReview()">›</button>
+          <div class="note" style="margin-top:6px;">
+            Tipp: a térképen (lent) a hely kártyáján belül a “Vélemények” rész is elérhető.
           </div>
         </div>
       </div>
     </section>
 
-    <!-- TÉRKÉP -->
+    <!-- TÉRKÉP (KOORDINÁTÁRA KÖZPONTOSÍTVA) -->
     <section id="terkep" class="section">
       <h2>Térkép</h2>
 
@@ -579,7 +495,7 @@
             id="mapIframe"
             title="Google térkép"
             width="100%"
-            height="320"
+            height="360"
             style="border:0; display:block;"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
@@ -601,40 +517,10 @@
     // YEAR
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // MAP
-    const mapQ = encodeURIComponent(SHOP.address);
-    const mapUrl = `https://www.google.com/maps/search/?api=1&query=${mapQ}`;
-    const mapEmbed = `https://www.google.com/maps?q=${mapQ}&output=embed`;
-    document.getElementById('mapIframe').src = mapEmbed;
-
-    // NAV/HERO
+    // HERO
     document.getElementById('brandName').textContent = SHOP.name;
     document.getElementById('brandSub').textContent = `${SHOP.city} • gumiszerviz + autómosó`;
     document.getElementById('heroName').textContent = SHOP.name;
-
-    // ÚTVONAL gomb
-    document.getElementById('mapBtn').href = mapUrl;
-
-    // PHONE
-    const telHref = `tel:${SHOP.phoneTel}`;
-    document.getElementById('callBtn').href = telHref;
-    document.getElementById('telBtn').href = telHref;
-    document.getElementById('telBtn').textContent = `📞 ${SHOP.phoneDisplay}`;
-    document.getElementById('telSide').href = telHref;
-    document.getElementById('telSide').textContent = `📞 ${SHOP.phoneDisplay}`;
-    document.getElementById('callBtn2').href = telHref;
-    document.getElementById('telTextInline').textContent = SHOP.phoneDisplay;
-
-    // Mobile call button
-    document.getElementById('callBtnMobile').href = telHref;
-
-    // EMAIL
-    const mailHref = `mailto:${SHOP.email}`;
-    document.getElementById('mailSide').href = mailHref;
-    document.getElementById('mailSide').textContent = `✉️ ${SHOP.email}`;
-
-    // FACEBOOK side link
-    document.getElementById('fbSide').href = SHOP.facebook;
 
     // ADDRESS
     document.getElementById('addrSide').textContent = SHOP.address;
@@ -651,24 +537,65 @@
     )).join("");
 
     // AUTÓMOSÓ
-    const washText = `${SHOP.carWash.title} • ${SHOP.carWash.hours} • ${SHOP.carWash.note}`;
-    document.getElementById('washSide').textContent = washText;
+    document.getElementById('washSide').textContent =
+      `${SHOP.carWash.title} • ${SHOP.carWash.hours} • ${SHOP.carWash.note}`;
+
+    // PHONE
+    const telHref = `tel:${SHOP.phoneTel}`;
+    document.getElementById('callBtn').href = telHref;
+    document.getElementById('callBtn2').href = telHref;
+    document.getElementById('callBtnMobile').href = telHref;
+    document.getElementById('telSide').href = telHref;
+    document.getElementById('telSide').textContent = `📞 ${SHOP.phoneDisplay}`;
+    document.getElementById('telBtn').href = telHref;
+    document.getElementById('telBtn').textContent = `📞 ${SHOP.phoneDisplay}`;
+    document.getElementById('telTextInline').textContent = SHOP.phoneDisplay;
+
+    // EMAIL
+    const mailHref = `mailto:${SHOP.email}`;
+    document.getElementById('mailSide').href = mailHref;
+    document.getElementById('mailSide').textContent = `✉️ ${SHOP.email}`;
+
+    // MAP (KOORDINÁTÁRA – így középre rak)
+    const mapUrl = `https://www.google.com/maps/search/?api=1&query=${SHOP.lat},${SHOP.lng}`;
+    const mapEmbed = `https://www.google.com/maps?q=${SHOP.lat},${SHOP.lng}&z=17&output=embed`;
+    document.getElementById('mapBtn').href = mapUrl;
+    document.getElementById('mapIframe').src = mapEmbed;
+
+    // Google reviews gombok (valódi Google oldal)
+    document.getElementById('googleReviewsBtn').href = SHOP.googleBusiness;
+    document.getElementById('googleWriteBtn').href = SHOP.googleBusiness;
+
+    // Social: most disabled, később ha kitöltöd, kattintható lesz (külön oldalon)
+    function bindSocial(id, url){
+      const el = document.getElementById(id);
+      if(url && url.trim().length > 0){
+        el.classList.remove('disabled');
+        el.removeAttribute('aria-disabled');
+        el.href = url;
+        el.target = "_blank";
+        el.rel = "noopener";
+      } else {
+        el.classList.add('disabled');
+        el.setAttribute('aria-disabled','true');
+        el.href = "#";
+        el.addEventListener('click', (e) => e.preventDefault());
+      }
+    }
+    bindSocial('fbBtn', SHOP.facebook);
+    bindSocial('igBtn', SHOP.instagram);
+    bindSocial('ttBtn', SHOP.tiktok);
 
     // CÍM -> TÉRKÉP
-    function goToMap(){
-      document.getElementById('terkep').scrollIntoView({behavior:'smooth'});
-    }
+    function goToMap(){ document.getElementById('terkep').scrollIntoView({behavior:'smooth'}); }
     const addrMini = document.getElementById('addrMini');
     addrMini.addEventListener('click', goToMap);
-    addrMini.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') goToMap();
-    });
+    addrMini.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') goToMap(); });
 
     // BOOKING (mailto)
     document.getElementById('bookingForm').addEventListener('submit', function (e) {
       e.preventDefault();
       const data = new FormData(e.target);
-
       const name = (data.get('name') || '').toString().trim();
       const phone = (data.get('phone') || '').toString().trim();
       const service = (data.get('service') || '').toString().trim();
@@ -677,89 +604,12 @@
 
       const subject = encodeURIComponent(`Időpontkérés – ${service} – ${name}`);
       const body = encodeURIComponent(
-        `Név: ${name}\n` +
-        `Telefon: ${phone}\n` +
-        `Szolgáltatás: ${service}\n` +
-        `Autó / gumiméret: ${car}\n\n` +
-        `Üzenet:\n${msg}\n\n` +
-        `Cím: ${SHOP.address}\n` +
-        `Telefon: ${SHOP.phoneDisplay}\n` +
-        `Facebook: ${SHOP.facebook}\n` +
-        `Google: ${SHOP.googleBusiness}`
+        `Név: ${name}\nTelefon: ${phone}\nSzolgáltatás: ${service}\nAutó / gumiméret: ${car}\n\nÜzenet:\n${msg}\n\nCím: ${SHOP.address}\nTelefon: ${SHOP.phoneDisplay}\nGoogle: ${SHOP.googleBusiness}`
       );
-
       window.location.href = `mailto:${SHOP.email}?subject=${subject}&body=${body}`;
     });
 
-    // SOCIAL buttons (most: ne vigyen sehova, később: csak töltsd ki a SHOP.instagram / SHOP.tiktok értékét)
-    const fbBtn = document.getElementById('fbBtn');
-    const igBtn = document.getElementById('igBtn');
-    const ttBtn = document.getElementById('ttBtn');
-
-    function bindSocial(btn, url, openInNewTab){
-      if(url && url.trim().length > 0){
-        btn.classList.remove('disabled');
-        btn.removeAttribute('aria-disabled');
-        btn.href = url;
-        if(openInNewTab){
-          btn.target = "_blank";
-          btn.rel = "noopener";
-        }
-      } else {
-        btn.classList.add('disabled');
-        btn.setAttribute('aria-disabled','true');
-        btn.href = "#";
-        btn.addEventListener('click', (e) => e.preventDefault());
-      }
-    }
-
-    // Kérésed szerint: MOST még ne vigyen sehova (FB/IG/TikTok)
-    // Ha később szeretnéd, hogy a Facebook már kattintható legyen, csak tedd be a SHOP.facebook-et ide bindSocial-lal.
-    bindSocial(fbBtn, "", true);
-    bindSocial(igBtn, SHOP.instagram, true);
-    bindSocial(ttBtn, SHOP.tiktok, true);
-
-    // Google Business (működjön)
-    document.getElementById('googleViewBtn').href = SHOP.googleBusiness;
-    document.getElementById('googleWriteBtn').href = SHOP.googleBusiness;
-
-    // REVIEWS SLIDER
-    let reviewIndex = 0;
-    const reviewSlides = Array.from(document.querySelectorAll('.review-slide'));
-    const dotsWrap = document.getElementById('reviewDots');
-
-    function renderDots(){
-      if(!dotsWrap) return;
-      dotsWrap.innerHTML = reviewSlides.map((_, i) =>
-        `<span class="dot2 ${i===reviewIndex ? 'active' : ''}" onclick="goReview(${i})"></span>`
-      ).join('');
-    }
-
-    function showReview(i){
-      reviewSlides.forEach(s => s.classList.remove('active'));
-      reviewSlides[i].classList.add('active');
-      renderDots();
-    }
-
-    function nextReview(){
-      reviewIndex = (reviewIndex + 1) % reviewSlides.length;
-      showReview(reviewIndex);
-    }
-
-    function prevReview(){
-      reviewIndex = (reviewIndex - 1 + reviewSlides.length) % reviewSlides.length;
-      showReview(reviewIndex);
-    }
-
-    function goReview(i){
-      reviewIndex = i;
-      showReview(reviewIndex);
-    }
-
-    renderDots();
-    setInterval(nextReview, 6000);
-
-    // Hamburger toggle
+    // Hamburger
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     function closeMobileMenu(){
@@ -772,16 +622,8 @@
       hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
       hamburgerBtn.textContent = isOpen ? '✕' : '☰';
     });
-
-    // close menu on click any mobile link
-    document.querySelectorAll('.m-link').forEach(a => {
-      a.addEventListener('click', () => closeMobileMenu());
-    });
-
-    // close on Escape
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape') closeMobileMenu();
-    });
+    document.querySelectorAll('.m-link').forEach(a => a.addEventListener('click', closeMobileMenu));
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeMobileMenu(); });
   </script>
 </body>
 </html>
