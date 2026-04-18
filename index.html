@@ -29,6 +29,7 @@
         radial-gradient(900px 600px at 90% 10%, rgba(255,210,74,.16), transparent 60%),
         var(--bg);
       color:var(--text);
+      scroll-behavior:smooth;
     }
 
     a{color:inherit;text-decoration:none}
@@ -39,27 +40,29 @@
     .nav{
       position:sticky;
       top:0;
-      z-index:50;
+      z-index:100;
       backdrop-filter:saturate(140%) blur(10px);
-      background:rgba(11,15,20,.70);
+      background:rgba(11,15,20,.78);
       border-bottom:1px solid var(--line);
     }
+
     .nav-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:12px 18px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:12px;
-      padding:12px 18px;
-      max-width:var(--max);
-      margin:0 auto;
     }
+
     .brand{
       display:flex;
       align-items:center;
       gap:10px;
-      font-weight:800;
-      letter-spacing:.3px;
+      min-width:0;
     }
+
     .logo-img{
       width:44px;
       height:44px;
@@ -68,6 +71,29 @@
       border:1px solid rgba(255,255,255,.12);
       box-shadow:0 10px 25px rgba(0,0,0,.35);
       background:linear-gradient(135deg,var(--brand),var(--brand2));
+      flex:0 0 auto;
+    }
+
+    .brand-text{
+      min-width:0;
+    }
+
+    .brand-title{
+      line-height:1.05;
+      font-weight:800;
+      font-size:20px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .brand-sub{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
     .menu{
@@ -77,11 +103,14 @@
       flex-wrap:wrap;
       justify-content:flex-end;
     }
+
     .menu a{
       padding:8px 10px;
       border-radius:12px;
       color:var(--muted);
+      font-weight:700;
     }
+
     .menu a:hover{
       background:rgba(255,255,255,.06);
       color:var(--text);
@@ -89,18 +118,17 @@
 
     .cta{
       background:linear-gradient(135deg,var(--brand),#ffb703);
-      color:#0b0f14;
-      font-weight:800;
-      padding:10px 14px;
+      color:#0b0f14 !important;
+      font-weight:900 !important;
+      padding:10px 14px !important;
       border-radius:14px;
       border:none;
       cursor:pointer;
       box-shadow:0 14px 35px rgba(255,210,74,.14);
       white-space:nowrap;
     }
-    .cta:hover{transform:translateY(-1px)}
 
-    /* Hamburger */
+    /* MOBILE TOGGLE */
     .hamburger{
       display:none;
       width:44px;
@@ -112,46 +140,83 @@
       cursor:pointer;
       align-items:center;
       justify-content:center;
-      font-size:18px;
+      font-size:20px;
+      flex:0 0 auto;
     }
-    .hamburger:hover{background:rgba(255,255,255,.07)}
+
+    .hamburger:hover{
+      background:rgba(255,255,255,.07);
+    }
 
     .mobile-menu{
       display:none;
       border-top:1px solid var(--line);
-      background:rgba(11,15,20,.92);
+      background:rgba(11,15,20,.96);
       backdrop-filter:saturate(140%) blur(10px);
     }
-    .mobile-menu.open{display:block}
+
+    .mobile-menu.open{
+      display:block;
+    }
+
     .mobile-menu-inner{
       max-width:var(--max);
       margin:0 auto;
-      padding:12px 18px 16px;
+      padding:14px 18px 18px;
       display:grid;
-      gap:8px;
+      gap:10px;
     }
+
+    .mobile-brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 0 6px;
+    }
+
+    .mobile-brand .mobile-brand-title{
+      font-weight:800;
+      font-size:18px;
+      line-height:1.1;
+    }
+
+    .mobile-brand .mobile-brand-sub{
+      color:var(--muted);
+      font-size:12px;
+      margin-top:2px;
+    }
+
     .mobile-menu a{
-      padding:12px;
+      padding:13px 14px;
       border-radius:14px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.03);
       color:var(--text);
       font-weight:700;
     }
-    .mobile-menu a:hover{background:rgba(255,255,255,.07)}
+
+    .mobile-menu a:hover{
+      background:rgba(255,255,255,.07);
+    }
+
     .mobile-menu .cta-link{
       background:linear-gradient(135deg,var(--brand),#ffb703);
       color:#0b0f14;
       border:none;
+      box-shadow:0 14px 35px rgba(255,210,74,.14);
+      font-weight:900;
     }
 
     @media (max-width:760px){
       .menu{display:none}
       .hamburger{display:flex}
+      .brand-text{display:none}
+      .nav-inner{padding:10px 14px}
     }
 
-    /* HERO */
+    /* HERO + BANNER */
     .hero{padding:22px 0 10px}
+
     .hero-banner{
       margin-bottom:14px;
       border-radius:16px;
@@ -160,6 +225,7 @@
       box-shadow:var(--shadow);
       background:#0b0f14;
     }
+
     .hero-banner img{
       width:100%;
       height:auto;
@@ -174,6 +240,7 @@
       gap:14px;
       align-items:stretch;
     }
+
     @media (max-width:900px){
       .hero-header-inner{grid-template-columns:1fr}
     }
@@ -187,6 +254,7 @@
     }
 
     .hero-card{padding:22px}
+
     .kicker{
       display:inline-flex;
       gap:8px;
@@ -198,6 +266,7 @@
       font-size:13px;
       background:rgba(255,255,255,.03);
     }
+
     .dot{
       width:8px;
       height:8px;
@@ -211,6 +280,7 @@
       font-size:40px;
       line-height:1.05;
     }
+
     @media (max-width:520px){
       h1{font-size:32px}
     }
@@ -237,12 +307,18 @@
       color:var(--text);
       cursor:pointer;
       font-weight:700;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
     }
+
     .btn:hover{background:rgba(255,255,255,.07)}
+
     .btn.primary{
       border:none;
       background:linear-gradient(135deg,var(--brand2),#5eead4);
       color:#071018;
+      font-weight:900;
     }
 
     .pillrow{
@@ -251,6 +327,7 @@
       flex-wrap:wrap;
       margin-top:12px;
     }
+
     .pill{
       font-size:13px;
       color:var(--muted);
@@ -275,6 +352,7 @@
       display:grid;
       gap:12px;
     }
+
     .mini{
       display:grid;
       gap:6px;
@@ -283,12 +361,14 @@
       border:1px solid var(--line);
       background:rgba(0,0,0,.18);
     }
+
     .mini strong{font-size:14px}
     .mini span{color:var(--muted); font-size:13px}
     .mini.clickable{cursor:pointer}
     .mini.clickable:hover{background:rgba(255,255,255,.05)}
 
     .hours-list{display:grid; gap:6px; margin-top:4px}
+
     .hour-line{
       display:flex;
       justify-content:space-between;
@@ -298,10 +378,12 @@
       border-bottom:1px dashed rgba(255,255,255,.10);
       padding-bottom:6px;
     }
+
     .hour-line:last-child{
       border-bottom:none;
       padding-bottom:0;
     }
+
     .hour-day{
       color:#cfe0f5;
       font-weight:800;
@@ -317,9 +399,11 @@
       grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
       gap:14px;
     }
+
     .svc{padding:16px}
     .svc h3{margin:8px 0 6px; font-size:18px}
     .svc p{margin:0; color:var(--muted); font-size:14px; line-height:1.55}
+
     .icon{
       width:42px;
       height:42px;
@@ -337,11 +421,13 @@
       gap:14px;
       align-items:stretch;
     }
+
     @media (max-width:900px){
       .contact-grid{grid-template-columns:1fr}
     }
 
     form{display:grid; gap:10px}
+
     input, textarea, select{
       width:100%;
       padding:12px;
@@ -351,33 +437,29 @@
       color:var(--text);
       outline:none;
     }
+
     textarea{
       min-height:110px;
       resize:vertical;
     }
 
     .hint{font-size:12px; color:var(--muted)}
+
     .footer{
       padding:22px 0;
       border-top:1px solid var(--line);
       color:var(--muted);
       font-size:13px;
     }
+
     .row{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
       align-items:center;
     }
+
     .right{margin-left:auto}
-    .badge{
-      color:#0b0f14;
-      background:linear-gradient(135deg,var(--brand),var(--brand2));
-      padding:6px 10px;
-      border-radius:999px;
-      font-weight:900;
-      font-size:12px;
-    }
 
     /* Social */
     .social-card{
@@ -385,11 +467,13 @@
       display:grid;
       gap:12px;
     }
+
     .social-row{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
     }
+
     .social-btn{
       display:inline-flex;
       align-items:center;
@@ -403,14 +487,17 @@
       cursor:pointer;
       min-width:160px;
     }
+
     .social-btn:hover{
       transform:translateY(-1px);
       background:rgba(255,255,255,.07);
     }
+
     .social-btn.fb{background:#1877f2; color:#fff; border-color:rgba(255,255,255,.12)}
     .social-btn.ig{background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4); color:#fff; border-color:rgba(255,255,255,.12)}
     .social-btn.tt{background:#0b0f14; color:#fff; border-color:rgba(255,255,255,.22)}
     .social-btn.gg{background:#111827; color:#fff; border-color:rgba(255,255,255,.22)}
+
     .social-btn.disabled{
       opacity:.55;
       filter:saturate(.6);
@@ -418,26 +505,26 @@
       transform:none !important;
     }
 
-    /* Price tables */
+    /* Price */
     .price-wrap{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:14px;
       margin-top:10px;
     }
+
     @media (max-width:900px){
       .price-wrap{grid-template-columns:1fr}
     }
 
-    .price-card{
-      padding:16px;
-    }
+    .price-card{padding:16px}
 
     .price-table{
       width:100%;
       border-collapse:collapse;
       margin-top:8px;
     }
+
     .price-table th,
     .price-table td{
       text-align:left;
@@ -445,19 +532,23 @@
       border-bottom:1px solid rgba(255,255,255,.08);
       vertical-align:top;
     }
+
     .price-table th{
       color:#dbe8f8;
       font-size:14px;
     }
+
     .price-table td{
       color:var(--muted);
       font-size:14px;
     }
+
     .price-table td:last-child,
     .price-table th:last-child{
       text-align:right;
       white-space:nowrap;
     }
+
     .price-note{
       margin-top:10px;
       font-size:13px;
@@ -503,25 +594,33 @@
     <div class="nav-inner">
       <a class="brand" href="#top" aria-label="Ugrás a tetejére">
         <img class="logo-img" src="logo.png" alt="Árki Gumi Szerviz logó" />
-        <div>
-          <div style="line-height:1" id="brandName">Árki Gumi Szerviz</div>
-          <div style="color:var(--muted);font-size:12px;margin-top:2px;" id="brandSub">Szentlőrinc • gumiszerviz + autómosó</div>
+        <div class="brand-text">
+          <div class="brand-title" id="brandName">Árki Gumi Szerviz</div>
+          <div class="brand-sub" id="brandSub">Szentlőrinc • gumiszerviz + autómosó</div>
         </div>
       </a>
 
       <nav class="menu" aria-label="Főmenü">
         <a href="#szolgaltatasok">Szolgáltatások</a>
-        <a href="#arak" id="menuArak">Árak</a>
+        <a href="#arak">Árak</a>
         <a href="#idopont">Időpont</a>
         <a href="#terkep">Kapcsolat</a>
         <a class="cta" id="callBtn" href="#">Hívás</a>
       </nav>
 
-      <button class="hamburger" id="hamburgerBtn" aria-label="Menü" aria-expanded="false">☰</button>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menü megnyitása" aria-expanded="false">☰</button>
     </div>
 
-    <div class="mobile-menu" id="mobileMenu" aria-label="Mobil menü">
+    <div class="mobile-menu" id="mobileMenu">
       <div class="mobile-menu-inner">
+        <div class="mobile-brand">
+          <img class="logo-img" src="logo.png" alt="Árki Gumi Szerviz logó" />
+          <div>
+            <div class="mobile-brand-title">Árki Gumi Szerviz</div>
+            <div class="mobile-brand-sub">Szentlőrinc • gumiszerviz + autómosó</div>
+          </div>
+        </div>
+
         <a href="#szolgaltatasok" class="m-link">Szolgáltatások</a>
         <a href="#arak" class="m-link">Árak</a>
         <a href="#idopont" class="m-link">Időpont</a>
@@ -630,7 +729,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td>15–14</td><td>3 500 Ft-tól</td></tr>
+              <tr><td>13–14</td><td>3 500 Ft-tól</td></tr>
               <tr><td>15–16</td><td>4 000 Ft-tól</td></tr>
               <tr><td>17–18</td><td>4 500 Ft-tól</td></tr>
               <tr><td>19–20</td><td>5 000 Ft-tól</td></tr>
@@ -745,7 +844,7 @@
           <div>
             <strong>Közösségi oldalak</strong>
             <div class="hint" style="margin-top:4px;">
-              A Facebook gomb már aktív. Az Instagram és TikTok később egyszerűen bekapcsolható.
+              A Facebook gomb aktív. Az Instagram és TikTok később egyszerűen bekapcsolható.
             </div>
             <div style="height:10px"></div>
 
@@ -817,12 +916,12 @@
     document.getElementById('footAddr').textContent = SHOP.address;
 
     const hoursWrap = document.getElementById('hoursSide');
-    hoursWrap.innerHTML = SHOP.hours.map(h => (
-      `<div class="hour-line">
+    hoursWrap.innerHTML = SHOP.hours.map(h => `
+      <div class="hour-line">
         <span class="hour-day">${h.day}</span>
         <span>${h.time}</span>
-      </div>`
-    )).join("");
+      </div>
+    `).join("");
 
     document.getElementById('washSide').textContent =
       `${SHOP.carWash.title} • ${SHOP.carWash.hours} • ${SHOP.carWash.note}`;
@@ -863,7 +962,7 @@
         el.classList.add('disabled');
         el.setAttribute('aria-disabled','true');
         el.href = "#";
-        el.addEventListener('click', (e) => e.preventDefault());
+        el.addEventListener('click', function(e){ e.preventDefault(); });
       }
     }
 
@@ -874,14 +973,16 @@
     function goToMap(){
       document.getElementById('terkep').scrollIntoView({behavior:'smooth'});
     }
+
     const addrMini = document.getElementById('addrMini');
     addrMini.addEventListener('click', goToMap);
-    addrMini.addEventListener('keydown', (e) => {
+    addrMini.addEventListener('keydown', function(e){
       if (e.key === 'Enter' || e.key === ' ') goToMap();
     });
 
     document.getElementById('bookingForm').addEventListener('submit', function (e) {
       e.preventDefault();
+
       const data = new FormData(e.target);
       const name = (data.get('name') || '').toString().trim();
       const phone = (data.get('phone') || '').toString().trim();
@@ -906,17 +1007,17 @@
       hamburgerBtn.textContent = '☰';
     }
 
-    hamburgerBtn.addEventListener('click', () => {
+    hamburgerBtn.addEventListener('click', function(){
       const isOpen = mobileMenu.classList.toggle('open');
       hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
       hamburgerBtn.textContent = isOpen ? '✕' : '☰';
     });
 
-    document.querySelectorAll('.m-link').forEach(a => {
+    document.querySelectorAll('.m-link').forEach(function(a){
       a.addEventListener('click', closeMobileMenu);
     });
 
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function(e){
       if(e.key === 'Escape') closeMobileMenu();
     });
   </script>
